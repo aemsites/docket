@@ -1,0 +1,101 @@
+:root {
+  /* Grid */
+  --grid-container-width: 83.4%;
+  --grid-column-width: calc(var(--grid-container-width) / 12);
+
+  /* colors */
+  --background-color: #f5f5f5;
+  --light-color: #e3e3e3;
+  --dark-color: #505050;
+  --text-color: #2f2f2f;
+  --brand-color: #0067b8;
+  --link-color: var(--brand-color);
+  --link-hover-color: #005da6;
+
+  /* fonts */
+  --font-family: "Segoe UI", segoe-ui, sans-serif;
+
+  /* body sizes */
+  --body-font-size-m: 22px;
+  --body-font-size-s: 19px;
+  --body-font-size-xs: 17px;
+
+  /* heading sizes */
+  --heading-font-size-xxl: 55px;
+  --heading-font-size-xl: 44px;
+  --heading-font-size-l: 34px;
+  --heading-font-size-m: 27px;
+  --heading-font-size-s: 24px;
+  --heading-font-size-xs: 22px;
+
+  /* nav heights */
+  --nav-height: 54px;
+}
+
+/* fallback fonts */
+@font-face {
+  font-family: Arial;
+  size-adjust: 88.82%;
+  src: local("Arial");
+}
+
+@media (width >= 900px) {
+
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+}
+
+header {
+  height: var(--header-height);
+}
+
+h1 { font-size: var(--heading-font-size-xxl); }
+h2 { font-size: var(--heading-font-size-xl); }
+h3 { font-size: var(--heading-font-size-l); }
+h4 { font-size: var(--heading-font-size-m); }
+h5 { font-size: var(--heading-font-size-s); }
+h6 { font-size: var(--heading-font-size-xs); }
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* sections */
+.section {
+  display: block;
+}
+
+@media (width >= 600px) {
+
+}
+
+@media (width >= 1440px) {
+  :root {
+    --grid-container-width: 1200px;
+  }
+}
+
+main > div,
+main > div[data-status] {
+  display: none;
+}
