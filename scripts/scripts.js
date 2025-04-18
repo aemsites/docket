@@ -3,7 +3,7 @@ import { loadArea } from './nx.js';
 // What locales do you wish to support
 const locales = { '': { ietf: 'en', tk: 'cks7hcz.css' } };
 
-// Widget link patterns to look for
+// Widget patterns to look for
 const widgets = [
   { fragment: '/fragments/' },
   { youtube: 'https://www.youtube' },
