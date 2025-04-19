@@ -1,20 +1,21 @@
-import { getMetadata } from '../../scripts/nx.js';
+import { getConfig, getMetadata } from '../../scripts/nx.js';
 import { loadFragment } from '../fragment/fragment.js';
+
+const FOOTER_PATH = '/fragments/nav/footer';
 
 /**
  * loads and decorates the footer
- * @param {Element} block The footer block element
+ * @param {Element} el The footer element
  */
-export default async function decorate(block) {
-  // load footer as fragment
+export default async function init(el) {
+  const { locale } = getConfig();
   const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragment(footerPath);
-
-  // decorate footer DOM
-  block.textContent = '';
-  const footer = document.createElement('div');
-  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
-
-  block.append(footer);
+  const path = footerMeta || FOOTER_PATH;
+  try {
+    const fragment = await loadFragment(`${locale.base}${path}`);
+    fragment.classList.add('footer-content');
+    el.append(fragment);
+  } catch (e) {
+    throw Error(e);
+  }
 }

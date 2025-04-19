@@ -158,13 +158,16 @@ function decorateIcons(el) {
 function decorateSections(parent, isDoc) {
   const selector = isDoc ? 'main > div' : ':scope > div';
   return [...parent.querySelectorAll(selector)].map((el) => {
+    const { parentElement } = el;
     const section = document.createElement('div');
-    el.parentElement.replaceChild(section, el);
-    el.classList.add('section-content');
-
     section.classList.add('section');
     section.dataset.status = 'decorated';
-    section.autoBlocks = decorateLinks(el);
+    section.append(el);
+
+    parentElement.append(section);
+    el.classList.add('section-content');
+
+    section.widgets = decorateLinks(el);
     section.blocks = [...el.querySelectorAll(':scope > div[class]')];
     decorateDefaults(el);
     decorateIcons(el);
@@ -190,7 +193,7 @@ export async function loadArea({ area = document, config }) {
   if (isDoc) decorateHeader();
   const sections = decorateSections(area, isDoc);
   for (const [idx, section] of sections.entries()) {
-    await Promise.all(section.autoBlocks.map((block) => loadBlock(block)));
+    await Promise.all(section.widgets.map((block) => loadBlock(block)));
     await Promise.all(section.blocks.map((block) => loadBlock(block)));
     delete section.dataset.status;
     if (isDoc && idx === 0) import('./postlcp.js');
@@ -203,7 +206,14 @@ export async function loadArea({ area = document, config }) {
   const template = getMetadata('template');
   if (template) { document.body.classList.add(`${template}-template`); }
 
-  // Load DA
-  if (!new URL(window.location.href).searchParams.get('dapreview')) return;
-  import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadArea));
+  // Setup DA
+  if (new URL(window.location.href).searchParams.get('dapreview')) {
+    import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadArea));
+  }
+
+  // Setup logging
+  window.nx = {
+    // eslint-disable-next-line no-console
+    log: (msg) => { console.log(msg); },
+  };
 }());

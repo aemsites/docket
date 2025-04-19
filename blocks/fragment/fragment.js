@@ -19,7 +19,7 @@ export async function loadFragment(path) {
   const { decorateArea } = getConfig();
 
   const resp = await fetch(`${path}.plain.html`);
-  if (!resp.ok) return null;
+  if (!resp.ok) throw Error(`Couldn't fetch ${path}.plain.html`);
 
   const html = await resp.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -32,8 +32,8 @@ export async function loadFragment(path) {
   fragment.append(...sections);
 
   // Hydrate like a normal page
-  if (decorateArea) decorateArea(fragment);
-  loadArea(fragment);
+  if (decorateArea) decorateArea({ area: fragment });
+  loadArea({ area: fragment });
 
   return fragment;
 }

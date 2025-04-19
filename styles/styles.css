@@ -1,26 +1,23 @@
 :root {
-  /* Grid */
+  /* grid */
   --grid-container-width: 83.4%;
   --grid-column-width: calc(var(--grid-container-width) / 12);
 
   /* colors */
-  --background-color: #f5f5f5;
-  --light-color: #e3e3e3;
-  --dark-color: #505050;
-  --text-color: #2f2f2f;
-  --brand-color: #0067b8;
-  --link-color: var(--brand-color);
-  --link-hover-color: #005da6;
+  color-scheme: light dark;
+
+  --light-color: #fff;
+  --dark-color: #000;
 
   /* fonts */
-  --font-family: "Segoe UI", segoe-ui, sans-serif;
+  --font-family: sans-serif;
 
-  /* body sizes */
+  /* body */
   --body-font-size-m: 22px;
   --body-font-size-s: 19px;
   --body-font-size-xs: 17px;
 
-  /* heading sizes */
+  /* headings */
   --heading-font-size-xxl: 55px;
   --heading-font-size-xl: 44px;
   --heading-font-size-l: 34px;
@@ -32,24 +29,28 @@
   --nav-height: 54px;
 }
 
-/* fallback fonts */
+/* fallback font */
 @font-face {
   font-family: Arial;
   size-adjust: 88.82%;
   src: local("Arial");
 }
 
-@media (width >= 900px) {
-
-}
-
 body {
   margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: light-dark(var(--light-color), var(--dark-color));
+  color: light-dark(var(--dark-color), var(--light-color));
   font-family: var(--font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+
+  &.light-theme {
+    color-scheme: light;
+  }
+
+  &.dark-theme {
+    color-scheme: dark;
+  }
 }
 
 header {
@@ -86,6 +87,10 @@ button {
 }
 
 @media (width >= 600px) {
+
+}
+
+@media (width >= 900px) {
 
 }
 
