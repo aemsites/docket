@@ -206,6 +206,11 @@ export async function loadArea({ area = document, config }) {
   const template = getMetadata('template');
   if (template) { document.body.classList.add(`${template}-template`); }
 
+  // Load script config
+  const { config } = await import('./scripts.js');
+  console.log(config);
+  loadArea({ config });
+
   // Setup DA
   if (new URL(window.location.href).searchParams.get('dapreview')) {
     import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadArea));

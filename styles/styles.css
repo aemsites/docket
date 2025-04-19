@@ -96,6 +96,12 @@ button {
   font: inherit;
 }
 
+main img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
 /* links & buttons */
 a {
   text-decoration: none;

@@ -1,5 +1,3 @@
-import { loadArea } from './nx.js';
-
 // What locales do you wish to support
 const locales = { '': { ietf: 'en', tk: 'cks7hcz.css' } };
 
@@ -19,5 +17,4 @@ const decorateArea = ({ area = document }) => {
   eagerLoad(area, 'img');
 };
 
-const config = { locales, widgets, decorateArea };
-loadArea({ config });
+export const config = { locales, widgets, decorateArea };
