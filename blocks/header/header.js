@@ -25,6 +25,7 @@ function decorateHeader(fragment) {
   decorateMainNav(mainNav);
 
   const actions = fragment.querySelector('.section:last-child');
+  console.log(actions.classList.length);
   if (actions && actions.classList.length > 0) decorateActions(actions);
 }
 
