@@ -1,5 +1,32 @@
-.header-content {
+header .header-content {
+  height: var(--header-height);
   max-width: var(--grid-container-width);
   margin: 0 auto;
+  display: grid;
+  align-items: center;
+  gap: var(--spacing-xl);
+  grid-template-columns: auto 1fr auto;
+  justify-items: start;
+
+  > .section {
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    line-height: 1;
+    margin: 0;
+  }
+}
+
+header .main-nav-section ul {
   display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-m);
+}
+
+header .actions-section {
+  justify-self: end;
 }

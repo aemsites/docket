@@ -13,6 +13,14 @@ function decorateMainNav(el) {
 
 function decorateActions(el) {
   el.classList.add('actions-section');
+  const theme = el.querySelector('[href*="/tools/widgets/theme"]');
+  if (!theme) return;
+  theme.addEventListener('click', (e) => {
+    e.preventDefault();
+    const { matches: preferDark } = window.matchMedia('(prefers-color-scheme: dark)');
+    const styleTheme = preferDark ? 'light-theme' : 'dark-theme';
+    document.body.classList.toggle(styleTheme);
+  });
 }
 
 function decorateHeader(fragment) {
@@ -25,8 +33,9 @@ function decorateHeader(fragment) {
   decorateMainNav(mainNav);
 
   const actions = fragment.querySelector('.section:last-child');
-  console.log(actions.classList.length);
-  if (actions && actions.classList.length > 0) decorateActions(actions);
+
+  // Only decorate the action area if it has not been decorated
+  if (actions?.classList.length < 2) decorateActions(actions);
 }
 
 /**

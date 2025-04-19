@@ -3,6 +3,14 @@
   --grid-container-width: 83.4%;
   --grid-column-width: calc(var(--grid-container-width) / 12);
 
+  /* spacing */
+  --spacing-xxl: 48px;
+  --spacing-xl: 32px;
+  --spacing-l: 24px;
+  --spacing-m: 12px;
+  --spacing-s: 8px;
+  --spacing-xs: 4px;
+
   /* colors */
   color-scheme: light dark;
 
@@ -10,23 +18,31 @@
   --dark-color: #000;
 
   /* fonts */
-  --font-family: sans-serif;
-
-  /* body */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --font-family: "Adobe Clean", adobe-clean, sans-serif;
 
   /* headings */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxxxl: 73px;
+  --heading-font-size-xxxl: 58px;
+  --heading-font-size-xxl: 45px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 28px;
+  --heading-font-size-m: 22px;
+  --heading-font-size-s: 20px;
+  --heading-font-size-xs: 18px;
+  --heading-line-height: 1.3;
 
-  /* nav heights */
-  --nav-height: 54px;
+  /* body */
+  --body-font-size-xxxl: 25px;
+  --body-font-size-xxl: 22px;
+  --body-font-size-xl: 20px;
+  --body-font-size-l: 18px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-line-height: 1.5;
+
+  /* misc */
+  --header-height: 54px;
 }
 
 /* fallback font */
@@ -42,7 +58,7 @@ body {
   color: light-dark(var(--dark-color), var(--light-color));
   font-family: var(--font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: var(--body-line-height);
 
   &.light-theme {
     color-scheme: light;
@@ -57,22 +73,21 @@ header {
   height: var(--header-height);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--heading-line-height);
+}
+
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
-
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-}
 
 input,
 textarea,
@@ -81,9 +96,19 @@ button {
   font: inherit;
 }
 
+/* links & buttons */
+a {
+  text-decoration: none;
+}
+
 /* sections */
 .section {
   display: block;
+}
+
+.default-content {
+  max-width: var(--grid-container-width);
+  margin: 0 auto;
 }
 
 @media (width >= 600px) {
