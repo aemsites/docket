@@ -60,7 +60,7 @@ export async function loadBlock(block) {
     (async () => {
       try {
         await (await import(`${blockPath}.js`)).default(block);
-      } catch (e) { throw Error(e); }
+      } catch (e) { console.log(e); }
       resolve();
     })();
   })];
@@ -187,9 +187,9 @@ function decorateHeader() {
   header.dataset.status = 'decorated';
 }
 
-export async function loadArea({ area = document, config }) {
-  const { decorateArea } = config ? setConfig(config) : getConfig();
-  if (decorateArea) decorateArea();
+export async function loadArea({ area = document }) {
+  const { decorateArea } = getConfig();
+  if (decorateArea) decorateArea({ area });
   const isDoc = area === document;
   if (isDoc) decorateHeader();
   const sections = decorateSections(area, isDoc);
@@ -206,10 +206,6 @@ export async function loadArea({ area = document, config }) {
   // Setup template
   const template = getMetadata('template');
   if (template) { document.body.classList.add(`${template}-template`); }
-
-  // Load script config
-  const { config } = await import('./scripts.js');
-  loadArea({ config });
 
   // Setup DA
   if (new URL(window.location.href).searchParams.get('dapreview')) {

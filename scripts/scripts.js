@@ -1,3 +1,5 @@
+import { loadArea, setConfig } from './nx.js';
+
 // What locales do you wish to support
 const locales = { '': { ietf: 'en', tk: 'cks7hcz.css' } };
 
@@ -8,7 +10,7 @@ const widgets = [
 ];
 
 // How to decorate an area before loading it
-const decorateArea = ({ area } = { area: document }) => {
+const decorateArea = ({ area = document }) => {
   const eagerLoad = (parent, selector) => {
     const img = parent.querySelector(selector);
     img?.removeAttribute('loading');
@@ -17,4 +19,5 @@ const decorateArea = ({ area } = { area: document }) => {
   eagerLoad(area, 'img');
 };
 
-export const config = { locales, widgets, decorateArea };
+setConfig({ locales, widgets, decorateArea });
+loadArea({ area: document });

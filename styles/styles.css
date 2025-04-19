@@ -97,7 +97,8 @@ button {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
+  width: auto;
   height: auto;
 }
 
@@ -114,6 +115,11 @@ a {
 .default-content {
   max-width: var(--grid-container-width);
   margin: 0 auto;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media (width >= 600px) {
