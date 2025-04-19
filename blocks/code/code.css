@@ -1,0 +1,10 @@
+.code {
+  max-width: var(--grid-container-width);
+  margin: 0 auto;
+
+  pre {
+    padding: var(--spacing-l);
+    border-radius: 8px;
+    overflow: scroll;
+  }
+}

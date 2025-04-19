@@ -60,7 +60,7 @@ export async function loadBlock(block) {
     (async () => {
       try {
         await (await import(`${blockPath}.js`)).default(block);
-      } catch (e) { console.log(e); }
+      } catch (e) { throw Error(e); }
       resolve();
     })();
   })];
@@ -116,7 +116,7 @@ function localizeLinks(links) {
 
       link.href = `${origin}/${locale.prefix}${pathname}${search}${hash}`;
     } catch {
-      console.log('Could not make localized link');
+      throw Error('Could not localize link');
     }
   });
 }
@@ -210,10 +210,4 @@ export async function loadArea({ area = document, config }) {
   if (new URL(window.location.href).searchParams.get('dapreview')) {
     import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadArea));
   }
-
-  // Setup logging
-  window.nx = {
-    // eslint-disable-next-line no-console
-    log: (msg) => { console.log(msg); },
-  };
 }());
