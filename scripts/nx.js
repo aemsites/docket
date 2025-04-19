@@ -188,7 +188,8 @@ function decorateHeader() {
 }
 
 export async function loadArea({ area = document, config }) {
-  if (config) setConfig(config);
+  const { decorateArea } = config ? setConfig(config) : getConfig();
+  if (decorateArea) decorateArea();
   const isDoc = area === document;
   if (isDoc) decorateHeader();
   const sections = decorateSections(area, isDoc);
@@ -208,7 +209,6 @@ export async function loadArea({ area = document, config }) {
 
   // Load script config
   const { config } = await import('./scripts.js');
-  console.log(config);
   loadArea({ config });
 
   // Setup DA

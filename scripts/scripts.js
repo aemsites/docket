@@ -8,7 +8,7 @@ const widgets = [
 ];
 
 // How to decorate an area before loading it
-const decorateArea = ({ area = document }) => {
+const decorateArea = ({ area } = { area: document }) => {
   const eagerLoad = (parent, selector) => {
     const img = parent.querySelector(selector);
     img?.removeAttribute('loading');

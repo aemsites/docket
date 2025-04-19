@@ -96,9 +96,8 @@ button {
   font: inherit;
 }
 
-main img {
-  max-width: 100%;
-  width: auto;
+img {
+  width: 100%;
   height: auto;
 }
 
