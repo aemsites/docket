@@ -39,5 +39,9 @@
     "stylelint": "14.6.0",
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-standard": "25.0.0"
+  },
+  "dependencies": {
+    "prism-themes": "^1.9.0",
+    "prismjs": "^1.30.0"
   }
 }
