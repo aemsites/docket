@@ -14,6 +14,7 @@ module.exports = {
   rules: {
     'no-param-reassign': [2, { props: false }],
     'class-methods-use-this': 0,
+    'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
     'import/no-cycle': 0,

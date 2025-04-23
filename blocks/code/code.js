@@ -1,27 +1,39 @@
-import { loadStyle } from '../../scripts/nx.js';
 import observe from '../../scripts/utils/intOb.js';
 
-let prism;
+const prism = import('prismjs');
 const languages = {
   javascript: { name: 'javascript' },
   curl: { name: 'bash' },
+  css: { name: 'css' },
 };
 
+function decorateTabs(tabsRow) {
+  tabsRow.classList.add('code-tabs-container');
+
+  const tabsList = tabsRow.querySelector('ul');
+  tabsList.classList.add('code-tabs-list');
+
+  const tabs = [...tabsList.querySelectorAll('li')];
+  return tabs.map((tab) => tab.textContent.toLowerCase().trim());
+}
+
 async function decorate(el) {
-  if (!prism) prism = import('prismjs');
   await prism;
 
-  const titleRows = [...el.querySelectorAll(':scope > div:nth-child(odd)')];
-  const highlights = titleRows.map(async (row) => {
-    const type = row.textContent.toLowerCase().trim();
+  const rows = [...el.querySelectorAll(':scope > div')];
+
+  const tabsRow = rows.shift();
+  const tabsArr = decorateTabs(tabsRow);
+
+  const highlights = rows.map(async (row, idx) => {
+    const type = tabsArr[idx];
     const lang = languages[type];
     if (!lang) throw Error('Language not supported');
 
-    if (!lang.module) lang.module = import(`/deps/prismjs/components/prism-${lang.name}.js`);
+    if (!lang.module) lang.module = import(`/deps/prismjs/components/prism-${lang.name}.min.js`);
     await lang.module;
 
-    const pre = row.nextElementSibling.querySelector('pre');
-    const code = pre.querySelector('code');
+    const code = row.querySelector('code');
     code.classList.add(`language-${lang.name}`);
 
     return new Promise((resolve) => {
