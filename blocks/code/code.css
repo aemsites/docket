@@ -3,6 +3,38 @@
   margin: 0 auto;
   visibility: hidden;
 
+  .code-tabs-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: var(--spacing-m);
+
+    li {
+      position: relative;
+      padding: var(--spacing-s);
+
+      &.is-active::after {
+        position: absolute;
+        content: "";
+        height: 2px;
+        border-radius: 1px;
+        background-color: light-dark(var(--dark-color), var(--light-color));
+        bottom: 2px;
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+
+  .code-tabs-panel {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
   &.is-highlighted {
     visibility: visible;
   }
