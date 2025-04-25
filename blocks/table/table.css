@@ -1,0 +1,33 @@
+.table {
+  max-width: var(--grid-container-width);
+  margin: 0 auto;
+  font-size: 14px;
+
+  &.parameters {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    border-style: hidden;
+    border-collapse: collapse;
+  }
+
+  .table-heading-row {
+    font-weight: 700;
+    background: #1e1e1e;
+  }
+
+  .table-content-row {
+    background: #1e1e1e;
+  }
+
+  td {
+    border: 2px solid rgb(0 0 0);
+    padding: 12px 18px;
+    vertical-align: top;
+  }
+}

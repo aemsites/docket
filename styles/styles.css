@@ -17,8 +17,43 @@
   --light-color: #fff;
   --dark-color: #000;
 
+  /* Spectrum 2 Colors */
+  --s2-cyan-800: #0086b4;
+  --s2-cyan-1300: #00394e;
+  --s2-orange-600: #f68511;
+  --s2-gray-50: #f8f8f8;
+  --s2-gray-75: #f3f3f3;
+  --s2-gray-100: #e9e9e9;
+  --s2-gray-200: #e1e1e1;
+  --s2-gray-300: #dadada;
+  --s2-gray-400: #c6c6c6;
+  --s2-gray-500: #8f8f8f;
+  --s2-gray-600: #717171;
+  --s2-gray-700: #505050;
+  --s2-gray-800: #292929;
+  --s2-green-200: #d7f7e1;
+  --s2-green-300: #adeec5;
+  --s2-green-600: #2fb880;
+  --s2-green-700: #0ba45d;
+  --s2-green-900: #05834e;
+  --s2-green-1100: #025d3c;
+  --s2-blue-200: #e5f0fe;
+  --s2-blue-700: #5989ff;
+  --s2-blue-900: #3b63fb;
+  --s2-blue-1000: #274dea;
+  --s2-blue-1200: #1532ad;
+  --s2-blue-1300: #10288c;
+  --s2-blue-1400: #0c1f69;
+  --s2-red-200: #ffebe8;
+  --s2-red-300: #ffd6d1;
+  --s2-red-800: #ea3829;
+  --s2-red-900: #d73220;
+  --s2-red-1000: #b40000;
+  --s2-yellow-100: #fff8cc;
+  --s2-yellow-600: #d29500;
+
   /* fonts */
-  --font-family: "Adobe Clean", adobe-clean, sans-serif;
+  --font-family: adobe-clean-display, "Adobe Clean", adobe-clean, sans-serif;
 
   /* headings */
   --heading-font-size-xxxxl: 73px;
@@ -67,6 +102,35 @@ body {
   &.dark-theme {
     color-scheme: dark;
   }
+
+  &:not(.landing-template) {
+    display: grid;
+    grid-template-areas:
+      "sitenav header header"
+      "sitenav main pagenav"
+      "sitenav footer pagenav";
+    grid-template-columns: 200px 1fr 200px;
+
+    header {
+      grid-area: header;
+    }
+
+    .docket-site-nav {
+      grid-area: sitenav;
+    }
+
+    main {
+      grid-area: main;
+    }
+
+    .docket-page-nav {
+      grid-area: pagenav;
+    }
+
+    footer {
+      grid-area: footer;
+    }
+  }
 }
 
 header {
@@ -110,12 +174,14 @@ a {
 /* sections */
 .section {
   display: block;
+
+  > .section-content {
+    max-width: var(--grid-container-width);
+    margin: 0 auto;
+  }
 }
 
 .default-content {
-  max-width: var(--grid-container-width);
-  margin: 0 auto;
-
   img {
     width: 100%;
     height: auto;

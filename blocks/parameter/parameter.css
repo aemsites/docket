@@ -1,0 +1,31 @@
+.param-heading-area {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+.parameter code {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.parameter pre.param-example {
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  background-color: rgb(30 30 30);
+}
+
+.parameter code.param-name {
+  background-color: var(--s2-cyan-1300);
+}
+
+.parameter code.param-required {
+  color: var(--s2-yellow-600);
+  font-style: italic;
+}
+
+.parameter .param-example-title {
+  text-transform: uppercase;
+  font-weight: 700;
+}

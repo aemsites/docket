@@ -19,5 +19,18 @@ const decorateArea = ({ area = document }) => {
   eagerLoad(area, 'img');
 };
 
+const loadNavs = async () => {
+  const main = document.body.querySelector('main');
+
+  const createSiteNav = (await import('../blocks/sitenav/sitenav.js')).default;
+  const siteNav = createSiteNav();
+  main.insertAdjacentElement('beforebegin', siteNav);
+
+  const createPageNav = (await import('../blocks/pagenav/pagenav.js')).default;
+  const pageNav = createPageNav();
+  main.insertAdjacentElement('afterend', pageNav);
+};
+
 setConfig({ locales, widgets, decorateArea });
-loadArea({ area: document });
+await loadArea({ area: document });
+if (!document.body.classList.contains('landing-template')) loadNavs();

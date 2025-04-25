@@ -29,6 +29,7 @@ export async function loadFragment(path) {
 
   const sections = doc.querySelectorAll('body > div');
   const fragment = document.createElement('div');
+  fragment.classList.add('fragment-content');
   fragment.append(...sections);
 
   // Hydrate like a normal page
@@ -41,5 +42,14 @@ export async function loadFragment(path) {
 export default async function init(a) {
   const path = a.getAttribute('href');
   const fragment = await loadFragment(path);
-  if (fragment) a.parentElement.replaceChild(fragment, a);
+
+  if (fragment) {
+    const defaultParent = a.closest('.default-content > *');
+    const defElToReplace = defaultParent || a;
+
+    const sections = fragment.querySelectorAll(':scope > section');
+    const content = sections.length > 1 ? fragment : fragment.querySelector('.section-content');
+
+    defElToReplace.parentElement.replaceChild(content, defElToReplace);
+  }
 }
