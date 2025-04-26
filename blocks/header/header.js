@@ -24,9 +24,11 @@ function decorateActions(el) {
 }
 
 function decorateHeader(fragment) {
-  const link = fragment.querySelector('a');
-  const brand = link.closest('.section');
-  decorateBrand(brand);
+  const img = fragment.querySelector('.section:first-child img');
+  if (img) {
+    const brand = img.closest('.section');
+    decorateBrand(brand);
+  }
 
   const ul = fragment.querySelector('ul');
   const mainNav = ul.closest('.section');

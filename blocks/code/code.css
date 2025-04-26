@@ -1,7 +1,8 @@
 .code {
-  max-width: var(--grid-container-width);
   margin: 0 auto;
   visibility: hidden;
+  max-width: 100px;
+  overflow-x: scroll;
 
   .code-tabs-list {
     display: flex;
@@ -36,6 +37,7 @@
   }
 
   &.is-highlighted {
+    max-width: 100%;
     visibility: visible;
   }
 
@@ -81,18 +83,11 @@ pre[class*=language-]::selection {
   background: #264f78
 }
 
-@media print {
-  code[class*=language-],
-  pre[class*=language-] {
-    text-shadow: none
-  }
-}
-
 pre[class*=language-] {
   padding: 1em;
   margin: .5em 0;
   overflow: auto;
-  background: #1e1e1e
+  background: #000;
 }
 
 :not(pre)>code[class*=language-] {

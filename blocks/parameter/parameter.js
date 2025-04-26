@@ -12,13 +12,11 @@ function getCodeEl(text, className, hasPre) {
 function decorateHeading(el) {
   // First row is the param name
   const nameEl = el.querySelector('p');
-  const [name, type] = nameEl.innerText.trim().split(' ');
+  const [name, type, required] = nameEl.innerText.trim().split(' ');
   nameEl.remove();
 
   // Name
-  const required = name.endsWith('*');
-  const nameIso = required ? name.substring(0, name.length - 1) : name;
-  const nameCodeEl = getCodeEl(nameIso, 'param-name');
+  const nameCodeEl = getCodeEl(name, 'param-name');
 
   // Type
   const typeEl = getCodeEl(type, 'param-type');
@@ -28,7 +26,7 @@ function decorateHeading(el) {
   headingArea.append(nameCodeEl, typeEl);
 
   // Required
-  if (required) {
+  if (required?.toLowerCase() === 'required') {
     const reqEl = getCodeEl('Required', 'param-required');
     headingArea.append(reqEl);
   }

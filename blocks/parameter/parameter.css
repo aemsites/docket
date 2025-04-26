@@ -1,3 +1,7 @@
+.parameter {
+  margin-bottom: 60px;
+}
+
 .param-heading-area {
   display: flex;
   align-items: center;

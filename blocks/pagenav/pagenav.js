@@ -2,7 +2,7 @@
  * Creates a structured unordered list from heading elements
  * @returns {HTMLElement|null} The created list or null if no headings found
  */
-export default function createPageNav() {
+export default function init(el) {
   const mainElement = document.querySelector('main');
   if (!mainElement) return null;
 
@@ -27,6 +27,7 @@ export default function createPageNav() {
     // If this is the first heading or a top-level heading
     if (i === 0) {
       const ul = document.createElement('ul');
+      current.element.innerText = 'On this page';
       rootUl.appendChild(current.element);
       current.element.appendChild(ul);
       current.childList = ul;
@@ -52,9 +53,5 @@ export default function createPageNav() {
     }
   }
 
-  const nav = document.createElement('nav');
-  nav.className = 'docket-page-nav';
-  nav.append(rootUl);
-
-  return nav;
+  el.append(rootUl);
 }

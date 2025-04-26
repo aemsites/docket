@@ -1,7 +1,7 @@
-import { loadArea, setConfig } from './nx.js';
+import { loadArea, loadBlock, setConfig } from './nx.js';
 
 // What locales do you wish to support
-const locales = { '': { ietf: 'en', tk: 'cks7hcz.css' } };
+const locales = { '': { ietf: 'en', tk: 'etj3wuq.css' } };
 
 // Widget patterns to look for
 const widgets = [
@@ -19,18 +19,16 @@ const decorateArea = ({ area = document }) => {
   eagerLoad(area, 'img');
 };
 
-const loadNavs = async () => {
-  const main = document.body.querySelector('main');
-
-  const createSiteNav = (await import('../blocks/sitenav/sitenav.js')).default;
-  const siteNav = createSiteNav();
-  main.insertAdjacentElement('beforebegin', siteNav);
-
-  const createPageNav = (await import('../blocks/pagenav/pagenav.js')).default;
-  const pageNav = createPageNav();
-  main.insertAdjacentElement('afterend', pageNav);
+const loadNav = async (name, position) => {
+  const main = document.querySelector('main');
+  const nav = document.createElement('nav');
+  nav.dataset.status = 'decorated';
+  nav.className = name;
+  main.insertAdjacentElement(position, nav);
+  await loadBlock(nav);
 };
 
 setConfig({ locales, widgets, decorateArea });
+await loadNav('sitenav', 'beforebegin');
 await loadArea({ area: document });
-if (!document.body.classList.contains('landing-template')) loadNavs();
+await loadNav('pagenav', 'afterend');

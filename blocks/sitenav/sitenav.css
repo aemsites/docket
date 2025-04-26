@@ -1,0 +1,10 @@
+.sitenav {
+  display: block;
+  grid-area: sitenav;
+  padding: 36px;
+
+  img {
+    display: block;
+    height: 22px;
+  }
+}

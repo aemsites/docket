@@ -1,7 +1,5 @@
 header .header-content {
   height: var(--header-height);
-  max-width: var(--grid-container-width);
-  margin: 0 auto;
   display: grid;
   align-items: center;
   gap: var(--spacing-xl);
