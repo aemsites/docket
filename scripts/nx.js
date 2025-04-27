@@ -187,7 +187,7 @@ function decorateHeader() {
   header.dataset.status = 'decorated';
 }
 
-export async function loadArea({ area = document }) {
+export async function loadArea({ area } = { area: document }) {
   const { decorateArea } = getConfig();
   if (decorateArea) decorateArea({ area });
   const isDoc = area === document;
@@ -206,6 +206,12 @@ export async function loadArea({ area = document }) {
   // Setup template
   const template = getMetadata('template');
   if (template) { document.body.classList.add(`${template}-template`); }
+
+  // Detect Hash
+  const pageId = window.location.hash?.replace('#', '');
+  if (pageId && document.getElementById(pageId).offsetParent === null) {
+    localStorage.setItem('lazyhash', pageId);
+  }
 
   // Setup DA
   if (new URL(window.location.href).searchParams.get('dapreview')) {

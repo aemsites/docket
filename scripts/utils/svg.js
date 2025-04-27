@@ -1,4 +1,4 @@
-import { getConfig } from '../scripts/nexter.js';
+import { getConfig } from '../nx.js';
 
 const { nxBase } = getConfig();
 

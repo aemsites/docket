@@ -1,5 +1,8 @@
 import { getConfig, getMetadata } from '../../scripts/nx.js';
+import getSvg from '../../scripts/utils/svg.js';
 import { loadFragment } from '../fragment/fragment.js';
+
+const { locale, codeBase } = getConfig();
 
 const HEADER_PATH = '/fragments/nav/header';
 
@@ -11,16 +14,33 @@ function decorateMainNav(el) {
   el.classList.add('main-nav-section');
 }
 
-function decorateActions(el) {
-  el.classList.add('actions-section');
-  const theme = el.querySelector('[href*="/tools/widgets/theme"]');
-  if (!theme) return;
-  theme.addEventListener('click', (e) => {
-    e.preventDefault();
-    const { matches: preferDark } = window.matchMedia('(prefers-color-scheme: dark)');
-    const styleTheme = preferDark ? 'light-theme' : 'dark-theme';
-    document.body.classList.toggle(styleTheme);
-  });
+async function decorateLink(section, pattern, name) {
+  const link = section.querySelector(`[href*="${pattern}"]`);
+  if (!link) return;
+
+  link.setAttribute('aria-label', link.textContent);
+  const svg = await getSvg({ paths: [`${codeBase}/img/logos/${name}.svg`] });
+  link.innerHTML = '';
+  link.append(svg[0]);
+  link.target = '_blank';
+  link.classList.add('decorated');
+
+  if (name === 'color') {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const { matches: preferDark } = window.matchMedia('(prefers-color-scheme: dark)');
+      const styleTheme = preferDark ? 'light-theme' : 'dark-theme';
+      document.body.classList.toggle(styleTheme);
+    });
+  }
+}
+
+async function decorateActions(section) {
+  section.classList.add('actions-section');
+  const color = decorateLink(section, '/tools/widgets/theme', 'color');
+  const discord = decorateLink(section, 'discord.com', 'discord');
+  const github = decorateLink(section, 'github.com', 'github');
+  await Promise.all([color, discord, github]);
 }
 
 function decorateHeader(fragment) {
@@ -45,7 +65,6 @@ function decorateHeader(fragment) {
  * @param {Element} el The header element
  */
 export default async function init(el) {
-  const { locale } = getConfig();
   const headerMeta = getMetadata('header');
   const path = headerMeta || HEADER_PATH;
   try {

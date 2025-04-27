@@ -1,19 +1,25 @@
-header .header-content {
-  height: var(--header-height);
-  display: grid;
+header {
+  display: flex;
   align-items: center;
-  gap: var(--spacing-xl);
-  grid-template-columns: auto 1fr auto;
-  justify-items: start;
+  padding: 0 72px;
 
-  > .section {
-    display: flex;
+  .header-content {
+    flex: 0 0 100%;
+    display: grid;
     align-items: center;
-  }
-
-  p {
+    gap: var(--spacing-xl);
+    grid-template-columns: 1fr auto;
+    justify-items: start;
     line-height: 1;
-    margin: 0;
+
+    > .section {
+      display: flex;
+      align-items: center;
+    }
+
+    p {
+      margin: 0;
+    }
   }
 }
 
@@ -22,9 +28,27 @@ header .main-nav-section ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: var(--spacing-m);
+  gap: var(--spacing-xl);
 }
 
 header .actions-section {
   justify-self: end;
+
+  .default-content {
+    display: flex;
+    gap: var(--spacing-l);
+  }
+
+  a {
+    display: none;
+    height: 22px;
+
+    &.decorated {
+      display: block;
+    }
+
+    svg {
+      height: 22px;
+    }
+  }
 }

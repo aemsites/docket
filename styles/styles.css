@@ -77,7 +77,7 @@
   --body-line-height: 1.5;
 
   /* misc */
-  --header-height: 54px;
+  --header-height: 94px; /* (36 + 36 + 22) */
 }
 
 body {
@@ -167,7 +167,7 @@ a {
 
     &::after {
       display: block;
-      content: '';
+      content: "";
       position: absolute;
       bottom: -8px;
       left: 0;
@@ -192,13 +192,12 @@ a {
   body {
     &.docs-template {
       display: grid;
-      grid-template-areas:
-        "sitenav header header"
-        "sitenav main pagenav"
-        "sitenav footer pagenav";
-      grid-template-columns: 300px 50% auto;
-      gap: 72px;
+      grid-template:
+        "sitenav header header" auto
+        "sitenav main pagenav" 1fr
+        "sitenav footer pagenav" auto / 300px 50% 1fr;
       justify-content: start;
+      min-height: 100vh;
 
       header {
         grid-area: header;
@@ -212,6 +211,7 @@ a {
 
       main {
         grid-area: main;
+        margin: 0 72px;
       }
 
       .pagenav {

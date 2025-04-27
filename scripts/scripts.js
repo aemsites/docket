@@ -1,6 +1,6 @@
 import { loadArea, loadBlock, setConfig } from './nx.js';
 
-// What locales do you wish to support
+// Supported locales
 const locales = { '': { ietf: 'en', tk: 'etj3wuq.css' } };
 
 // Widget patterns to look for
@@ -19,7 +19,10 @@ const decorateArea = ({ area = document }) => {
   eagerLoad(area, 'img');
 };
 
-const loadNav = async (name, position) => {
+setConfig({ locales, widgets, decorateArea });
+
+const loadNav = async (name) => {
+  const position = name === 'sitenav' ? 'beforebegin' : 'afterend';
   const main = document.querySelector('main');
   const nav = document.createElement('nav');
   nav.dataset.status = 'decorated';
@@ -28,7 +31,6 @@ const loadNav = async (name, position) => {
   await loadBlock(nav);
 };
 
-setConfig({ locales, widgets, decorateArea });
-await loadNav('sitenav', 'beforebegin');
-await loadArea({ area: document });
-await loadNav('pagenav', 'afterend');
+loadNav('sitenav');
+await loadArea();
+await loadNav('pagenav');

@@ -1,9 +1,7 @@
 import observe from '../../scripts/utils/intOb.js';
 
 const prism = import('prismjs');
-const languages = {
-
-};
+const languages = {};
 
 function decorateTabs(tabsRow, panels) {
   tabsRow.classList.add('code-tabs-container');
