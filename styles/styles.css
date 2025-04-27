@@ -173,7 +173,7 @@ a {
       left: 0;
       right: 0;
       height: 2px;
-      background: light-dark(var(--dark-color), var(--s2-gray-800));
+      background: light-dark(var(--s2-gray-300), var(--s2-gray-800));
       border-radius: 1px;
     }
   }
@@ -206,7 +206,7 @@ a {
       .sitenav {
         display: block;
         grid-area: sitenav;
-        background-color: rgb(255 255 255 / 5%);
+        background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%));
       }
 
       main {

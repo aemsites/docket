@@ -3,7 +3,7 @@
   grid-area: sitenav;
   padding: 36px;
 
-  img {
+  svg {
     display: block;
     height: 22px;
   }
