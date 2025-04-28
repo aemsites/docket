@@ -18,7 +18,10 @@
     padding: 0 0 0 12px;
     box-sizing: border-box;
     list-style: none;
-    display: none;
+
+    > li > ul {
+      display: none;
+    }
 
     &.is-open {
       display: block;
@@ -47,7 +50,6 @@
 
   > ul {
     padding: 0;
-    display: block;
 
     > ul {
       display: none;

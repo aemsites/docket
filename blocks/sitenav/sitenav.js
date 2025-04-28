@@ -11,8 +11,11 @@ function generateSiteList(siteData, pathname, nested) {
   return Object.keys(siteData).map((key) => {
     const ul = document.createElement('ul');
 
-    if (pathname.startsWith(siteData[key].path)) {
-      ul.classList.add('is-open');
+    if (pathname !== siteData[key].path) {
+      const inPath = pathname.startsWith(siteData[key].path);
+
+      if (inPath) ul.classList.add('is-open');
+      if (!nested) ul.classList.add('is-open');
     }
 
     const li = document.createElement('li');
@@ -29,7 +32,7 @@ function generateSiteList(siteData, pathname, nested) {
       btn.addEventListener('click', () => {
         btn.closest('ul').classList.toggle('is-open');
       });
-      const children = generateSiteList(siteData[key].children, pathname);
+      const children = generateSiteList(siteData[key].children, pathname, true);
       li.append(btn, ...children);
     }
     ul.append(li);
