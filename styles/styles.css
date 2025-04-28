@@ -103,6 +103,11 @@ body {
       text-decoration: underline;
     }
   }
+
+  li {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+  }
 }
 
 header {
@@ -195,7 +200,7 @@ a {
       grid-template:
         "sitenav header header" auto
         "sitenav main pagenav" 1fr
-        "sitenav footer pagenav" auto / 300px 1fr 300px;
+        "sitenav footer pagenav" auto / 300px 1fr 400px;
       justify-content: start;
       min-height: 100vh;
 

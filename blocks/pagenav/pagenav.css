@@ -1,4 +1,6 @@
 .pagenav {
+  padding-right: 72px;
+
   ul {
     margin: 0;
     padding: 0 0 0 18px;
