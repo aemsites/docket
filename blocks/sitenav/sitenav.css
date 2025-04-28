@@ -24,8 +24,6 @@
     }
 
     &.is-open {
-      display: block;
-
       > li > .expand-tree {
         transform: rotate(90deg);
       }
