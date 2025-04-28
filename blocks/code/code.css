@@ -36,6 +36,11 @@
     }
   }
 
+  .code-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   &.is-highlighted {
     max-width: 100%;
     visibility: visible;

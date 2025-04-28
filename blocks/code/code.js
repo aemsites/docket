@@ -54,6 +54,7 @@ async function decorate(el) {
 
     const code = row.querySelector('code');
     code.classList.add(`language-${type}`);
+    code.closest('div').classList.add('code-container');
 
     return new Promise((resolve) => {
       window.Prism.highlightElement(code, false, () => { resolve(); });

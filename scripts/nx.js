@@ -203,6 +203,10 @@ export async function loadArea({ area } = { area: document }) {
 }
 
 (async function loadNx() {
+  // Setup theme
+  const theme = localStorage.getItem('docket-theme');
+  if (theme) document.body.classList.add(theme);
+
   // Setup template
   const template = getMetadata('template');
   if (template) { document.body.classList.add(`${template}-template`); }

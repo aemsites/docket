@@ -28,9 +28,21 @@ async function decorateLink(section, pattern, name) {
   if (name === 'color') {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const { matches: preferDark } = window.matchMedia('(prefers-color-scheme: dark)');
-      const styleTheme = preferDark ? 'light-theme' : 'dark-theme';
-      document.body.classList.toggle(styleTheme);
+      const { body } = document;
+
+      let currPref = localStorage.getItem('docket-theme');
+      if (!currPref) {
+        currPref = matchMedia('(prefers-color-scheme: dark)')
+          .matches ? 'dark-theme' : 'light-theme';
+      }
+
+      const theme = currPref === 'dark-theme'
+        ? { add: 'light-theme', remove: 'dark-theme' }
+        : { add: 'dark-theme', remove: 'light-theme' };
+
+      body.classList.remove(theme.remove);
+      body.classList.add(theme.add);
+      localStorage.setItem('docket-theme', theme.add);
     });
   }
 }
