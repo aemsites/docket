@@ -55,7 +55,7 @@ async function decorateActions(section) {
   await Promise.all([color, discord, github]);
 }
 
-function decorateHeader(fragment) {
+async function decorateHeader(fragment) {
   const img = fragment.querySelector('.section:first-child img');
   if (img) {
     const brand = img.closest('.section');
@@ -69,7 +69,7 @@ function decorateHeader(fragment) {
   const actions = fragment.querySelector('.section:last-child');
 
   // Only decorate the action area if it has not been decorated
-  if (actions?.classList.length < 2) decorateActions(actions);
+  if (actions?.classList.length < 2) await decorateActions(actions);
 }
 
 /**
@@ -82,7 +82,7 @@ export default async function init(el) {
   try {
     const fragment = await loadFragment(`${locale.base}${path}`);
     fragment.classList.add('header-content');
-    decorateHeader(fragment);
+    await decorateHeader(fragment);
     el.append(fragment);
   } catch (e) {
     throw Error(e);
