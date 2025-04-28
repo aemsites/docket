@@ -214,7 +214,7 @@ a {
       grid-template:
         "sitenav header header" auto
         "sitenav main pagenav" 1fr
-        "sitenav footer pagenav" auto / 300px 1fr 300px;
+        "sitenav footer footer" auto / 300px 1fr 300px;
       justify-content: start;
       min-height: 100vh;
 
