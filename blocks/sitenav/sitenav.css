@@ -1,10 +1,15 @@
 .sitenav {
-  display: block;
   grid-area: sitenav;
   padding: 36px;
 
   svg {
     display: block;
     height: 22px;
+  }
+}
+
+@media (width >= 900px) {
+  .sitenav {
+    display: block;
   }
 }

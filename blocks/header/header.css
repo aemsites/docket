@@ -1,7 +1,7 @@
 header {
   display: flex;
   align-items: center;
-  padding: 0 72px;
+  padding: 0 32px;
 
   .header-content {
     flex: 0 0 100%;
@@ -21,14 +21,10 @@ header {
       margin: 0;
     }
   }
-}
 
-header .main-nav-section ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: var(--spacing-xl);
+  .main-nav-section ul {
+    display: none;
+  }
 }
 
 header .actions-section {
@@ -50,5 +46,19 @@ header .actions-section {
     svg {
       height: 22px;
     }
+  }
+}
+
+@media (width >= 900px) {
+  .header {
+    padding: 0 32px 0 72px;
+  }
+
+  header .main-nav-section ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--spacing-xl);
   }
 }

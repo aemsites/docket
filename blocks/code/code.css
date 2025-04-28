@@ -2,7 +2,7 @@
   margin: 0 auto;
   visibility: hidden;
   max-width: 100px;
-  overflow-x: scroll;
+  overflow: hidden;
 
   .code-tabs-list {
     display: flex;
@@ -44,6 +44,7 @@
   &.is-highlighted {
     max-width: 100%;
     visibility: visible;
+    overflow: auto;
   }
 
   pre[class*="language-"] {

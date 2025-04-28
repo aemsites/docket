@@ -1,9 +1,14 @@
 .pagenav {
-  padding-right: 72px;
+  padding-right: 36px;
+  color: var(--s2-gray-500);
 
   ul {
     margin: 0;
     padding: 0 0 0 18px;
     list-style: none;
+  }
+
+  a {
+    color: var(--s2-gray-500);
   }
 }
