@@ -213,7 +213,7 @@ export async function loadArea({ area } = { area: document }) {
 
   // Detect Hash
   const pageId = window.location.hash?.replace('#', '');
-  if (pageId && document.getElementById(pageId).offsetParent === null) {
+  if (pageId && document.getElementById(pageId)?.offsetParent === null) {
     localStorage.setItem('lazyhash', pageId);
   }
 
