@@ -7,7 +7,7 @@ const EXP_ICON = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xm
 
 const { codeBase } = getConfig();
 
-function generateSiteList(siteData, pathname, nested) {
+function generateSiteList(siteData, pathname) {
   return Object.keys(siteData).map((key) => {
     const ul = document.createElement('ul');
 
@@ -15,7 +15,6 @@ function generateSiteList(siteData, pathname, nested) {
       const inPath = pathname.startsWith(siteData[key].path);
 
       if (inPath) ul.classList.add('is-open');
-      if (!nested) ul.classList.add('is-open');
     }
 
     const li = document.createElement('li');
@@ -32,7 +31,7 @@ function generateSiteList(siteData, pathname, nested) {
       btn.addEventListener('click', () => {
         btn.closest('ul').classList.toggle('is-open');
       });
-      const children = generateSiteList(siteData[key].children, pathname, true);
+      const children = generateSiteList(siteData[key].children, pathname);
       li.append(btn, ...children);
     }
     ul.append(li);
