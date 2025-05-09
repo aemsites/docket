@@ -1,6 +1,6 @@
 .pagenav {
   padding-right: 36px;
-  color: var(--s2-gray-500);
+  color: light-dark(var(--s2-gray-700), var(--s2-gray-500));
 
   ul {
     margin: 0;
@@ -9,6 +9,6 @@
   }
 
   a {
-    color: var(--s2-gray-500);
+    color: light-dark(var(--s2-gray-700), var(--s2-gray-500));
   }
 }

@@ -74,7 +74,7 @@
   --body-font-size-m: 16px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
-  --body-line-height: 1.5;
+  --body-line-height: 1.6;
 
   /* misc */
   --header-height: 94px; /* (36 + 36 + 22) */
@@ -95,28 +95,36 @@ body {
   &.dark-theme {
     color-scheme: dark;
   }
-
-  main {
-    margin: 0 32px;
-    word-break: break-word;
-  }
-
-  a {
-    color: light-dark(var(--dark-color), var(--light-link));
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  li {
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-  }
 }
 
 header {
   height: var(--header-height);
+}
+
+main {
+  margin: 0 32px;
+  word-break: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: light-dark(var(--dark-color), var(--light-link));
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+li {
+  margin-block: 1em 1em;
+}
+
+pre {
+  overflow: scroll;
 }
 
 .docket-site-nav {
@@ -160,30 +168,22 @@ img {
   height: auto;
 }
 
-/* links & buttons */
-a {
-  text-decoration: none;
-}
 
 /* sections */
 .section {
   display: block;
-
-  > .section-content {
-    /* max-width: var(--grid-container-width);
-    margin: 0 auto; */
-  }
 }
 
 .default-content {
   > h2 {
     position: relative;
+    margin-block-end: 1em;
 
     &::after {
       display: block;
       content: "";
       position: absolute;
-      bottom: -8px;
+      bottom: -12px;
       left: 0;
       right: 0;
       height: 2px;
@@ -214,7 +214,7 @@ a {
       grid-template:
         "sitenav header header" auto
         "sitenav main pagenav" 1fr
-        "sitenav footer footer" auto / 300px 1fr 300px;
+        "sitenav footer footer" auto / 300px minmax(0, 1fr) 300px;
       justify-content: start;
       min-height: 100vh;
 

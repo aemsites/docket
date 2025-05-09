@@ -13,10 +13,13 @@ function decorateTabs(tabsRow, panels) {
   return tabs.map((tab, index) => {
     const [text, lang] = tab.textContent.split(' ');
     const language = lang ? lang.match(/\((.*)\)/).pop() : text;
-    tab.textContent = text;
+    const btn = document.createElement('button');
+    btn.textContent = text;
+    tab.innerHTML = '';
+    tab.append(btn);
 
     if (index === 0) tab.classList.add('is-active');
-    tab.addEventListener('click', () => {
+    btn.addEventListener('click', () => {
       tabs.forEach((offTab, idx) => {
         offTab.classList.remove('is-active');
         panels[idx].classList.remove('is-active');

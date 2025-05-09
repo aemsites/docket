@@ -1,0 +1,26 @@
+.media {
+  picture {
+    display: block;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+
+    img {
+      display: block;
+      position: relative;
+      max-width: 60%;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      display: block;
+      content: "";
+      background: #fff;
+    }
+  }
+}

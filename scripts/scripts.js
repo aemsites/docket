@@ -1,4 +1,4 @@
-import { loadArea, loadBlock, setConfig } from './nx.js';
+import { loadArea, loadStyle, loadBlock, setConfig } from './nx.js';
 
 // Supported locales
 const locales = { '': { ietf: 'en', tk: 'etj3wuq.css' } };
@@ -19,8 +19,6 @@ const decorateArea = ({ area = document }) => {
   eagerLoad(area, 'img');
 };
 
-setConfig({ locales, widgets, decorateArea });
-
 const loadNav = async (name) => {
   const position = name === 'sitenav' ? 'beforebegin' : 'afterend';
   const main = document.querySelector('main');
@@ -31,6 +29,14 @@ const loadNav = async (name) => {
   await loadBlock(nav);
 };
 
-loadNav('sitenav');
-await loadArea();
-await loadNav('pagenav');
+(async function loadPage() {
+  const { codeBase } = setConfig({ locales, widgets, decorateArea });
+
+  // Load fonts if returning
+  const returning = localStorage.getItem('docket-visit');
+  if (returning) loadStyle(`${codeBase}/styles/fonts.css`);
+
+  loadNav('sitenav');
+  await loadArea();
+  await loadNav('pagenav');
+}());
