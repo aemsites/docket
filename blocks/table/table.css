@@ -1,7 +1,7 @@
 .table {
   font-size: 14px;
   border-radius: 12px;
-  overflow: hidden;
+  overflow-x: scroll;
 
   table {
     margin: -4px;
