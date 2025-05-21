@@ -34,7 +34,7 @@ const loadNav = async (name) => {
 
   // Load fonts if returning
   const returning = localStorage.getItem('docket-visit');
-  if (returning) loadStyle(`${codeBase}/styles/fonts.css`);
+  if (returning) loadStyle(`${codeBase}/styles/fonts-block.css`);
 
   loadNav('sitenav');
   await loadArea();
