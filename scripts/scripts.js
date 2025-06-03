@@ -1,7 +1,10 @@
 import { loadArea, loadStyle, loadBlock, setConfig } from './nx.js';
 
 // Supported locales
-const locales = { '': { ietf: 'en', tk: 'etj3wuq.css' } };
+const locales = {
+  '': { ietf: 'en', tk: 'etj3wuq.css' },
+  '/de': { ietf: 'de', tk: 'etj3wuq.css' },
+};
 
 // Widget patterns to look for
 const widgets = [

@@ -2,10 +2,12 @@
   font-size: 14px;
   border-radius: 12px;
   overflow-x: scroll;
+  overflow-y: hidden;
 
   table {
     margin: -4px;
     border-collapse: collapse;
+    width: calc(100% + 8px);
   }
 
   td {
