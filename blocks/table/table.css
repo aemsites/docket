@@ -28,6 +28,14 @@
     }
   }
 
+  .table-heading-row {
+    font-weight: 700;
+
+    td {
+      background-color: light-dark(var(--s2-gray-200), var(--s2-gray-700));
+    }
+  }
+
   &.fixed {
     table {
       table-layout: fixed;

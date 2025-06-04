@@ -20,6 +20,7 @@
     list-style: none;
 
     > li > ul {
+      margin-right: 16px;
       display: none;
     }
 
@@ -35,7 +36,7 @@
   }
 
   li {
-    margin: 0.6rem 0;
+    margin-block: 1rem 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -46,12 +47,9 @@
     }
   }
 
+  /* First Level */
   > ul {
     padding: 0;
-
-    > ul {
-      display: none;
-    }
   }
 
   .expand-tree {
@@ -61,6 +59,7 @@
     background-color: transparent;
     width: 16px;
     height: 16px;
+    color: var(--s2-gray-500);
 
     svg {
       width: 16px;
@@ -68,7 +67,10 @@
     }
   }
 
-
+  a {
+    display: block;
+    margin-right: 16px;
+  }
 }
 
 @media (width >= 900px) {
