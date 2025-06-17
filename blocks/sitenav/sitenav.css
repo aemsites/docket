@@ -1,6 +1,6 @@
 .sitenav {
   grid-area: sitenav;
-  padding: 36px;
+  padding: 32px 36px 36px;
   font-size: 14px;
 
   a.docket-brand-logo {
@@ -10,7 +10,7 @@
 
   svg {
     display: block;
-    height: 22px;
+    height: 28px;
   }
 
   ul {

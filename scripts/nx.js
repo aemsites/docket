@@ -145,14 +145,14 @@ function decorateLinks(el) {
 function decorateIcons(el) {
   const { codeBase } = getConfig();
   const icons = el.querySelectorAll('span.icon');
-  icons.forEach((icon) => {
+  for (const icon of icons) {
     const name = icon.classList[1].substring(5);
     const img = document.createElement('img');
     img.src = `${codeBase}/img/icons/${name}.svg`;
     img.loading = 'lazy';
     img.alt = '';
     icon.append(img);
-  });
+  }
 }
 
 function decorateSections(parent, isDoc) {
