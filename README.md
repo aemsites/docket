@@ -1,3 +1,3 @@
 # Docket
-Documentation for everyone.
+High performance and multi-audience documentation.
 
