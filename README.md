@@ -1,3 +1,3 @@
 # Docket
-High performance and multi-audience documentation.
+High performance multi-audience documentation.
 
