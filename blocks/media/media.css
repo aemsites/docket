@@ -23,4 +23,17 @@
       background: #fff;
     }
   }
+
+  &.cover {
+    margin-block-end: 1.6rem;
+
+    picture {
+      margin-block-start: 0;
+      margin-block-end: 0;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
 }
