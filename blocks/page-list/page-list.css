@@ -1,0 +1,40 @@
+.docket-page-list {
+  list-style: none;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin: 0 0 var(--spacing-700) 0;
+  padding: 0;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .docket-page-list-card {
+    display: grid;
+    padding: var(--spacing-m);
+    border-radius: 8px;
+    border: 1px solid light-dark(var(--s2-gray-200), var(--s2-gray-800));
+    margin: 0;
+    transition: background-color 0.25s ease-in-out;
+
+    &:hover {
+      background-color: light-dark(var(--s2-gray-100), var(--s2-gray-800));
+    }
+  }
+
+  .docket-page-list-card-title {
+    font-size: var(--s2-font-size-l);
+    line-height: 1;
+    font-weight: 700;
+    margin-bottom: var(--spacing-m);
+  }
+
+  .docket-page-list-card-description {
+    font-size: var(--font-size-m);
+  }
+}

@@ -11,11 +11,8 @@ function generateSiteList(siteData, pathname) {
   return Object.keys(siteData).map((key) => {
     const ul = document.createElement('ul');
 
-    if (pathname !== siteData[key].path) {
-      const inPath = pathname.startsWith(siteData[key].path);
-
-      if (inPath) ul.classList.add('is-open');
-    }
+    const inPath = pathname.startsWith(siteData[key].path);
+    if (inPath) ul.classList.add('is-open');
 
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -94,7 +91,6 @@ export default async function init(el) {
     const { pathname } = window.location;
     const siteData = await fetchSiteData();
     const formatted = formatSiteData(siteData);
-    console.log(formatted);
     const siteList = generateSiteList(formatted, pathname);
     el.append(...siteList);
   } catch (e) {
