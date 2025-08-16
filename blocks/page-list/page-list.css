@@ -11,6 +11,7 @@
   }
 
   a {
+    color: light-dark(var(--dark-color), var(--light-color));
     text-decoration: none;
   }
 
@@ -28,6 +29,7 @@
   }
 
   .docket-page-list-card-title {
+    color: light-dark(var(--dark-main-link), var(--light-main-link));
     font-size: var(--s2-font-size-l);
     line-height: 1;
     font-weight: 700;

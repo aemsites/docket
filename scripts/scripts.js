@@ -33,11 +33,7 @@ const loadNav = async (name) => {
 };
 
 (async function loadPage() {
-  const { codeBase } = setConfig({ locales, widgets, decorateArea });
-
-  // Load fonts if returning
-  const returning = localStorage.getItem('docket-visit');
-  if (returning) loadStyle(`${codeBase}/styles/fonts-block.css`);
+  setConfig({ locales, widgets, decorateArea });
 
   loadNav('sitenav');
   await loadArea();
