@@ -147,6 +147,13 @@ main {
   a {
     color: light-dark(var(--dark-main-link), var(--light-main-link));
   }
+
+  code {
+    font-size: 14px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background-color: light-dark(#efefef, #292929);
+  }
 }
 
 a:hover {

@@ -7,8 +7,19 @@ const EXP_ICON = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xm
 
 const { codeBase } = getConfig();
 
+function sortKeys(siteData) {
+  // Sort siteData children by timestamp before iterating
+  return Object.keys(siteData).sort((a, b) => {
+    const timestampA = siteData[a].timestamp || 0;
+    const timestampB = siteData[b].timestamp || 0;
+    return timestampB - timestampA; // Sort in descending order (newest first)
+  });
+}
+
 function generateSiteList(siteData, pathname) {
-  return Object.keys(siteData).map((key) => {
+  const sortedKeys = sortKeys(siteData);
+
+  return sortedKeys.map((key) => {
     const ul = document.createElement('ul');
 
     const inPath = pathname.startsWith(siteData[key].path);
@@ -59,6 +70,7 @@ function formatSiteData(pageData) {
       if (index === segments.length - 1) {
         currentNode[segment].title = item.title;
         currentNode[segment].path = item.path;
+        currentNode[segment].timestamp = Number(item.timestamp);
       }
 
       currentNode = currentNode[segment].children;
@@ -91,6 +103,7 @@ export default async function init(el) {
     const { pathname } = window.location;
     const siteData = await fetchSiteData();
     const formatted = formatSiteData(siteData);
+    console.log(formatted);
     const siteList = generateSiteList(formatted, pathname);
     el.append(...siteList);
   } catch (e) {

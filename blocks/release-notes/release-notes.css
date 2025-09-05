@@ -1,0 +1,48 @@
+.release-notes {
+  h1 {
+    line-height: 1;
+    margin: 0 0 12px;
+  }
+
+  h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 6px 0;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .area {
+    margin-bottom: 12px;
+  }
+
+  .title-area {
+    p {
+      font-size: 14px;
+    }
+
+    strong {
+      text-transform: uppercase;
+    }
+  }
+
+  .details-area {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 1200px) {
+  .release-notes {
+    max-width: 80%;
+  }
+}
+
+@media (width >= 1600px) {
+  .release-notes {
+    max-width: 50%;
+  }
+}
