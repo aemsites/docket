@@ -2,15 +2,28 @@ import { getConfig } from '../../scripts/nx.js';
 
 const { codeBase } = getConfig();
 
-async function fetchSiteData() {
-  const resp = await fetch(`${codeBase}/query-index.json`);
-  if (!resp.ok) throw Error('Could not fetch query index');
-  const { data } = await resp.json();
+function sortByTime(data) {
+  // Sort data children by timestamp before iterating
+  return data.sort((a, b) => {
+    const timestampA = a.timestamp || 0;
+    const timestampB = b.timestamp || 0;
+    return timestampB - timestampA; // Sort in descending order (newest first)
+  });
+}
+
+function sortByLength(data) {
   return data.sort((a, b) => {
     const segmentsA = a.path.split('/').length - 1;
     const segmentsB = b.path.split('/').length - 1;
     return segmentsA - segmentsB;
   });
+}
+
+async function fetchSiteData(releases) {
+  const resp = await fetch(`${codeBase}/query-index.json`);
+  if (!resp.ok) throw Error('Could not fetch query index');
+  const { data } = await resp.json();
+  return releases ? sortByTime(data) : sortByLength(data);
 }
 
 function createCards(siteData) {
@@ -47,8 +60,10 @@ function createCards(siteData) {
 }
 
 export default async function init(el) {
+  const releases = el.classList.contains('release-notes');
+
   try {
-    const siteData = await fetchSiteData();
+    const siteData = await fetchSiteData(releases);
     const cards = createCards(siteData);
     el.append(cards);
   } catch (err) {
