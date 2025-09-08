@@ -148,7 +148,8 @@ main {
     color: light-dark(var(--dark-main-link), var(--light-main-link));
   }
 
-  code {
+  p > code,
+  li > code {
     font-size: 14px;
     padding: 6px 8px;
     border-radius: 6px;
