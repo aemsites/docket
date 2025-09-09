@@ -1,6 +1,7 @@
 import { getConfig, getMetadata } from '../../scripts/nx.js';
 import getSvg from '../../scripts/utils/svg.js';
 import { loadFragment } from '../fragment/fragment.js';
+import decorateSearchPanel from './search.js';
 
 const { locale, codeBase } = getConfig();
 
@@ -70,6 +71,12 @@ async function decorateHeader(fragment) {
 
   // Only decorate the action area if it has not been decorated
   if (actions?.classList.length < 2) await decorateActions(actions);
+
+  // Decorate the search panel
+  const search = document.createElement('div');
+  search.classList.add('section', 'search-section');
+  actions.before(search);
+  decorateSearchPanel(search);
 }
 
 /**
