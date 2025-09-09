@@ -1,0 +1,112 @@
+name: Page Indexer
+
+on:
+  # Run on schedule (daily at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: 'Output directory for fetched pages'
+        required: false
+        default: 'pages'
+      index_dir:
+        description: 'Output directory for fetched pages'
+        required: false
+        default: 'index'
+
+
+  # Run on push to main branch if config file changes
+  push:
+    branches: [ main ]
+    paths:
+      - 'tools/index/fetch-pages.js'
+      - 'tools/index/indexer-config.json'
+      - '.github/workflows/page-indexer.yaml'
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # Needed to commit back to repo
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch full history for proper commits
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Set variables
+      run: |
+        echo "OUTPUT_DIR=${{ github.event.inputs.output_dir || 'pages' }}" >> $GITHUB_ENV
+        echo "INDEX_DIR=${{ github.event.inputs.index_dir || 'index' }}" >> $GITHUB_ENV
+        
+    - name: Fetch HTML pages
+      run: |
+        node ./tools/index/fetch-pages.js ./tools/index/indexer-config.json
+    
+    - name: Run Pagefind indexing
+      run: |
+        echo "Running Pagefind on $OUTPUT_DIR..."
+        npx pagefind --site "$OUTPUT_DIR" --output-path "$INDEX_DIR" --force-language en
+        
+        echo "Pagefind index created in $INDEX_DIR"
+        ls -la "$INDEX_DIR"
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if [ -d "$INDEX_DIR" ]; then
+          # Check if there are any changes to commit
+          git add "$INDEX_DIR"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+        else
+          echo "Index directory not found"
+          echo "changes=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Add only the index directory (not the HTML files)
+        git add "$INDEX_DIR"
+        
+        # Commit with detailed message
+        PAGES_COUNT=$(find "$OUTPUT_DIR" -name "*.html" | wc -l)
+        git commit -m "Update Pagefind index
+        
+        - Fetched and indexed $PAGES_COUNT pages
+        - Generated: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+        - Workflow run: $GITHUB_RUN_NUMBER
+        - Config: $CONFIG_FILE"
+        
+        # Push changes
+        git push
+    
+    - name: Upload artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: pagefind-results
+        path: |
+          ${{ env.OUTPUT_DIR }}
+          ${{ env.INDEX_DIR }}
+        retention-days: 7
+    

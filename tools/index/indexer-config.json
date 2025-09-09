@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://docs.da.live",
+  "indexUrl": "https://docs.da.live/query-index.json",
+  "outputDir": "./pages",
+  "delay": 100,
+  "timeout": 10000,
+  "skipPatterns": [],
+  "filters": ["audience", "type"]
+}
