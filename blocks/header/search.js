@@ -1,6 +1,5 @@
 import { getConfig } from '../../scripts/nx.js';
 
-
 const { codeBase } = getConfig();
 
 /**
@@ -118,13 +117,7 @@ export default function decorateSearchPanel(container) {
         // eslint-disable-next-line no-console
         console.log(`Searching for: "${query}"`);
         // for the mini search, we want to exclude release notes
-        const searchResults = await window.hlx.pagefind.search(query, {
-          filters: {
-            not: {
-              type: ['Release Notes'],
-            },
-          },
-        });
+        const searchResults = await window.hlx.pagefind.search(query, { filters: { not: { type: ['Release Notes'] } } });
         displaySearchResults(searchResults, query);
       } else {
         clearSearchResults();
