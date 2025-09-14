@@ -151,6 +151,12 @@ main {
   ul,
   ol {
     padding-inline-start: 24px;
+
+    /* Reduce nested lists even further */
+    ul,
+    ol {
+      padding-inline-start: 12px;
+    }
   }
 
   p > code,
