@@ -148,10 +148,15 @@ main {
     color: light-dark(var(--dark-main-link), var(--light-main-link));
   }
 
+  ul,
+  ol {
+    padding-inline-start: 24px;
+  }
+
   p > code,
   li > code {
     font-size: 14px;
-    padding: 6px 8px;
+    padding: 2px 4px;
     border-radius: 6px;
     background-color: light-dark(#efefef, #292929);
   }
@@ -213,7 +218,6 @@ img {
   width: auto;
   height: auto;
 }
-
 
 /* sections */
 .section {
