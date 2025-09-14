@@ -268,9 +268,9 @@ img {
     &.docs-template {
       display: grid;
       grid-template:
-        "sitenav header header" auto
-        "sitenav main pagenav" 1fr
-        "sitenav footer footer" auto / 300px minmax(0, 1fr) 300px;
+        "sitenav header" auto
+        "sitenav main" 1fr
+        "sitenav footer" auto / 300px minmax(0, 1fr);
       justify-content: start;
       min-height: 100vh;
 
@@ -289,13 +289,27 @@ img {
         margin: 0 72px;
       }
 
+      footer {
+        grid-area: footer;
+      }
+    }
+  }
+}
+
+@media (width >= 1200px) {
+  body {
+    &.docs-template {
+      display: grid;
+      grid-template:
+        "sitenav header header" auto
+        "sitenav main pagenav" 1fr
+        "sitenav footer footer" auto / 300px minmax(0, 1fr) 300px;
+      justify-content: start;
+      min-height: 100vh;
+
       .pagenav {
         display: block;
         grid-area: pagenav;
-      }
-
-      footer {
-        grid-area: footer;
       }
     }
   }
