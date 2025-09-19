@@ -2,6 +2,7 @@ import { getConfig, getMetadata } from '../../scripts/nx.js';
 import getSvg from '../../scripts/utils/svg.js';
 import { loadFragment } from '../fragment/fragment.js';
 import decorateSearchPanel from './search.js';
+import loadScript from '../../scripts/utils/script.js';
 
 const { locale, codeBase } = getConfig();
 
@@ -74,7 +75,7 @@ async function decorateHeader(fragment) {
 
   // Decorate the search panel
   const search = document.createElement('div');
-  search.classList.add('section', 'search-section');
+  search.id = 'docsearch';
   actions.before(search);
   decorateSearchPanel(search);
 }
