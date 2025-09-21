@@ -62,3 +62,24 @@ header .actions-section {
     gap: var(--spacing-xl);
   }
 }
+
+/* DocSearch styles */
+body.DocSearch--active .DocSearch-Modal {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+body.DocSearch--active .DocSearch-Actions .DocSearch-Clear,
+body.DocSearch--active .DocSearch-Actions .DocSearch-Close,
+body.DocSearch--active .DocSearch-Actions .DocSearch-MagnifierLabel {
+  color:  light-dark(var(--s2-gray-800), var(--s2-gray-100));
+}
+
+body.DocSearch--active .DocSearch-Label,
+body.DocSearch--active .DocSearch-Commands-Key,
+body.DocSearch--active .DocSearch-Logo svg .cls-1,
+body.DocSearch--active .DocSearch-Logo svg .cls-2 {
+  color:  var(--s2-gray-400);
+  fill:  var(--s2-gray-400);
+}
