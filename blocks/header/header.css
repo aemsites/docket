@@ -64,22 +64,37 @@ header .actions-section {
 }
 
 /* DocSearch styles */
-body.DocSearch--active .DocSearch-Modal {
+body.DocSearch--active .DocSearch-Modal,
+button.DocSearch-Button {
   border-radius: 0.5rem;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  background: #fff;
+  --docsearch-modal-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  --docsearch-modal-background: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-footer-background: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-muted-color: light-dark(var(--s2-gray-600), var(--s2-gray-500));
+  --docsearch-searchbox-focus-background: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-soft-primary-color: light-dark(var(--s2-gray-100), var(--s2-gray-800));
+  --docsearch-background-color: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-searchbox-background: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-key-background: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-text-color: light-dark(var(--dark-color), var(--s2-gray-100));
+  --docsearch-key-color: light-dark(var(--dark-color), var(--s2-gray-100));
+  --docsearch-subtle-color: light-dark(var(--dark-color), var(--s2-gray-100));
+  --docsearch-secondary-text-color: light-dark(var(--s2-gray-600), var(--s2-gray-500));
+  --docsearch-icon-color: light-dark(var(--s2-gray-400), var(--s2-gray-400));
+  --docsearch-highlight-color: light-dark(var(--dark-main-link), var(--light-main-link));
+  --docsearch-hit-background: light-dark(var(--light-color), var(--dark-color));
+  --docsearch-hit-highlight-color: light-dark(var(--s2-gray-200), var(--s2-gray-700));
 }
 
-body.DocSearch--active .DocSearch-Actions .DocSearch-Clear,
-body.DocSearch--active .DocSearch-Actions .DocSearch-Close,
-body.DocSearch--active .DocSearch-Actions .DocSearch-MagnifierLabel {
-  color:  light-dark(var(--s2-gray-800), var(--s2-gray-100));
+body.DocSearch--active .DocSearch-Modal .DocSearch-Hit a {
+  border: 1px solid light-dark(var(--s2-gray-100), var(--s2-gray-800));
 }
 
-body.DocSearch--active .DocSearch-Label,
-body.DocSearch--active .DocSearch-Commands-Key,
+body.DocSearch--active .DocSearch-Modal .DocSearch-MagnifierLabel svg {
+  color: light-dark(var(--s2-gray-600), var(--s2-gray-500));
+}
+
 body.DocSearch--active .DocSearch-Logo svg .cls-1,
 body.DocSearch--active .DocSearch-Logo svg .cls-2 {
-  color:  var(--s2-gray-400);
-  fill:  var(--s2-gray-400);
+  fill: light-dark(var(--s2-gray-600), var(--s2-gray-500));
 }
