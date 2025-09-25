@@ -66,7 +66,6 @@ header .actions-section {
 /* DocSearch styles */
 body.DocSearch--active .DocSearch-Modal,
 button.DocSearch-Button {
-  border-radius: 0.5rem;
   --docsearch-modal-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
   --docsearch-modal-background: light-dark(var(--light-color), var(--dark-color));
   --docsearch-footer-background: light-dark(var(--light-color), var(--dark-color));
@@ -91,6 +90,10 @@ body.DocSearch--active .DocSearch-Modal .DocSearch-Form {
   border-radius: 4px;
 }
 
+body.DocSearch--active .DocSearch-Modal .DocSearch-Footer {
+  width: unset;  
+}
+
 body.DocSearch--active .DocSearch-Modal .DocSearch-Hit a {
   border: 1px solid light-dark(var(--s2-gray-100), var(--s2-gray-800));
 }
@@ -102,4 +105,14 @@ body.DocSearch--active .DocSearch-Modal .DocSearch-MagnifierLabel svg {
 body.DocSearch--active .DocSearch-Logo svg .cls-1,
 body.DocSearch--active .DocSearch-Logo svg .cls-2 {
   fill: light-dark(var(--s2-gray-600), var(--s2-gray-500));
+}
+
+button.DocSearch-Button {
+  border-radius: 0.5rem;
+}
+
+@media (width >=900px) {
+  body.DocSearch--active .DocSearch-Modal
+    border-radius: 0.5rem;
+  }
 }
