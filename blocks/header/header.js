@@ -80,7 +80,7 @@ async function decorateSearch(actions) {
       container: search,
       appId: searchConfig.agolia_appId,
       apiKey: searchConfig.agolia_appKey,
-      indexName: searchConfig.agolia_indices[0],
+      indices: searchConfig.agolia_indices,
     });
   } catch (err) {
     // eslint-disable-next-line no-console
