@@ -32,10 +32,12 @@ const loadNav = async (name) => {
   await loadBlock(nav);
 };
 
-(async function loadPage() {
+export async function loadPage() {
   setConfig({ locales, widgets, decorateArea });
 
   loadNav('sitenav');
   await loadArea();
   await loadNav('pagenav');
-}());
+};
+
+await loadPage();
