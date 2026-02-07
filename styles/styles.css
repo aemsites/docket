@@ -148,10 +148,21 @@ main {
     color: light-dark(var(--dark-main-link), var(--light-main-link));
   }
 
+  ul,
+  ol {
+    padding-inline-start: 24px;
+
+    /* Reduce nested lists even further */
+    ul,
+    ol {
+      padding-inline-start: 12px;
+    }
+  }
+
   p > code,
   li > code {
     font-size: 14px;
-    padding: 6px 8px;
+    padding: 2px 4px;
     border-radius: 6px;
     background-color: light-dark(#efefef, #292929);
   }
@@ -214,7 +225,6 @@ img {
   height: auto;
 }
 
-
 /* sections */
 .section {
   display: block;
@@ -257,11 +267,12 @@ img {
   body {
     display: grid;
     grid-template:
-      "sitenav header header" auto
-      "sitenav main pagenav" 1fr
-      "sitenav footer footer" auto / 300px minmax(0, 1fr) 300px;
+      "sitenav header" auto
+      "sitenav main" 1fr
+      "sitenav footer" auto / 300px minmax(0, 1fr);
     justify-content: start;
     min-height: 100vh;
+      
 
     header {
       grid-area: header;
@@ -278,13 +289,25 @@ img {
       margin: 0 72px;
     }
 
+    footer {
+      grid-area: footer;
+    }
+  }
+}
+
+@media (width >= 1200px) {
+  body {
+    display: grid;
+    grid-template:
+      "sitenav header header" auto
+      "sitenav main pagenav" 1fr
+      "sitenav footer footer" auto / 300px minmax(0, 1fr) 300px;
+    justify-content: start;
+    min-height: 100vh;
+
     .pagenav {
       display: block;
       grid-area: pagenav;
-    }
-
-    footer {
-      grid-area: footer;
     }
   }
 }

@@ -22,7 +22,7 @@
 
 .parameter code.param-name {
   background-color: light-dark(var(--s2-cyan-800), var(--s2-cyan-1300));
-  color: light-dark(var(--dark-color), var(--light-color));
+  color: light-dark(var(--light-color), var(--light-color));
 }
 
 .parameter code.param-required {

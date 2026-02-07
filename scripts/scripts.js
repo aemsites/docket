@@ -63,7 +63,7 @@ function setColorScheme() {
   classList.add(scheme);
 }
 
-(async function loadPage() {
+export async function loadPage() {
   setConfig({ locales, widgets, decorateArea });
 
   setColorScheme();
@@ -73,4 +73,6 @@ function setColorScheme() {
 
   await loadArea();
   await loadNav('pagenav');
-}());
+};
+
+await loadPage();
